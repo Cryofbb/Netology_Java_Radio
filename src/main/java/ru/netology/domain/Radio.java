@@ -33,7 +33,7 @@ public class Radio {
     public int increaseChannel() {
         if(currentChannel < maxChannel) {
             currentChannel = currentChannel + 1;
-        } else if (currentChannel == maxChannel) {
+        } else {
             currentChannel = minChannel;
         }
         return currentChannel;
@@ -42,7 +42,7 @@ public class Radio {
     public int decreaseChannel() {
         if (currentChannel > minChannel) {
             currentChannel = currentChannel - 1;
-        } else if (currentChannel == minChannel) {
+        } else {
             currentChannel = maxChannel;
         }
         return currentChannel;
