@@ -1,112 +1,96 @@
 package ru.netology.domain;
 
 public class Radio {
-    private String name;
     private int maxChannel;
     private int minChannel;
     private int currentChannel;
     private int maxVolume;
     private int minVolume;
     private int currentVolume;
-    private boolean on;
 
-    public String getName() {
-        return name;
-    } // Получение имени
+    public void setMaxChannel(int maxChannel) {
+        this.maxChannel = maxChannel;
+    } // Изменение max канала
 
-    public int getMaxChannel() {
-        return maxChannel;
-    } // Получение максимального канала
+    public void setMinChannel(int minChannel) {
+        this.minChannel = minChannel;
+    } // Изменение min канала
 
-    public int getMinChannel() {
-        return minChannel;
-    } // Получение минимального канала
-
-    public int getMaxVolume() {
-        return maxVolume;
-    } // Получение максимальной громкости
-
-    public int getMinVolume() {
-        return minVolume;
-    } // Получение минимальной громкости
-
-    public void setName(String name) {
-        this.name = name;
-    } // Изменение имени
-
-    public int getStation() {
+    public int getChannel() {
         return currentChannel;
     } // Текущий канал
 
-    public void setStation(short currentChannel) {
+    public void setChannel(int currentChannel) {
         if (currentChannel > maxChannel) {
-            return;
-        }
+            currentChannel = maxChannel;
+            }
         if (currentChannel < minChannel) {
-            return;
+            currentChannel = minChannel;
         }
         this.currentChannel = currentChannel;
     }// Произвольное изменение текущего канала. Если больше min/max то нет изменений
 
-    public int getVolume() {
-        return currentVolume;
-    } // Текущая громкость
-
-    public void setVolume(short currentVolume) {
-        if (currentVolume > maxVolume) {
-            return;
-        }
-        if (currentVolume < minVolume) {
-            return;
-        }
-        this.currentVolume = currentVolume;
-    }// Произвольное изменение громкости. Если больше min/max то нет изменений
-
-    public void increaseChannel() {
+    public int increaseChannel() {
         if (currentChannel < maxChannel) {
             currentChannel = currentChannel + 1;
         }
         if (currentChannel == maxChannel) {
             currentChannel = minChannel;
         }
-        this.currentChannel = currentChannel;
+        return currentChannel;
     } // Увеличение номера канала
 
-    public void decreaseChannel() {
+    public int decreaseChannel() {
         if (currentChannel > minChannel) {
             currentChannel = currentChannel - 1;
         }
         if (currentChannel == minChannel) {
             currentChannel = maxChannel;
         }
-        this.currentChannel = currentChannel;
+        return currentChannel;
     } // Уменьшение номера канала
 
-    public void increaseVolume() {
+    // Громкость
+
+    public void setMaxVolume(int maxVolume) {
+        this.maxVolume = maxVolume;
+    } // Изменение max громкости
+
+    public void setMinVolume(int minVolume) {
+        this.minVolume = minVolume;
+    } // Изменение min громкости
+
+    public int getVolume() {
+        return currentVolume;
+    } // Текущая громкость
+
+    public void setVolume(int currentVolume) {
+        if (currentVolume > maxVolume) {
+            currentVolume = maxVolume;
+        }
+        if (currentVolume < minVolume) {
+            currentVolume = minVolume;
+        }
+        this.currentVolume = currentVolume;
+    }// Произвольное изменение громкости. Если больше min/max то нет изменений
+
+    public int increaseVolume() {
         if (currentVolume < maxVolume) {
             currentVolume = currentVolume + 1;
         }
         if (currentVolume == maxVolume) {
-            return;
+            return currentVolume;
         }
-        this.currentVolume = currentVolume;
+        return currentVolume;
     } // Увеличение громкости
 
-    public void decreaseVolume() {
+    public int decreaseVolume() {
         if (currentVolume > minVolume) {
             currentVolume = currentVolume - 1;
         }
         if (currentVolume == minVolume) {
-            return;
+            return currentVolume;
         }
-        this.currentVolume = currentVolume;
+        return currentVolume;
     } // Уменьшение громкости
-
-    public boolean isOn() {
-        return on;
-    } // Текущее состояние питания
-
-    public void setOn(boolean on) {
-        this.on = on;
-    } // Включение питания
 }
