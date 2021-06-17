@@ -8,12 +8,32 @@ public class RadioTest {
     Radio radio = new Radio();
 
     @Test
-    void changeChannel() {
-        radio.setMaxChannel(9);
-        radio.setMinChannel(0);
-        radio.setChannel(1);
-        assertEquals(1, radio.getChannel());
+    public void shouldUseNoArguments(){
+        assertEquals(50, radio.getVolume());
     }
+
+    @Test
+    public void shouldUseAllArguments(){
+        Radio radio = new Radio(1, 100, 0, 50, 100, 0, 50);
+        assertEquals(50, radio.getVolume());
+    }
+    @Test
+    public void shouldChangeCurrentChannel(){
+        Radio radio = new Radio(30);
+        assertEquals(10, radio.getChannel());
+    }
+
+    @Test
+    public void checkMaxChannel(){
+        assertEquals(10, radio.getMaxChannel());
+    }
+//    @Test
+//    void changeChannel() {
+//        radio.setMaxChannel(9);
+//        radio.setMinChannel(0);
+//        radio.setChannel(1);
+//        assertEquals(1, radio.getChannel());
+//    }
 
     @Test
     void changeChannelMoreMax() {

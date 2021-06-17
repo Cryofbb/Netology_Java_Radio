@@ -1,12 +1,36 @@
 package ru.netology.domain;
 
 public class Radio {
-    private int maxChannel;
-    private int minChannel;
-    private int currentChannel;
-    private int maxVolume;
-    private int minVolume;
-    private int currentVolume;
+    private int id;
+    private int maxChannel = 10;
+    private int minChannel = 0;
+    private int currentChannel = 5;
+    private int maxVolume = 100;
+    private int minVolume = 0;
+    private int currentVolume = 50;
+
+    public Radio() {
+    }
+
+    public Radio(int currentChannel) {
+        if (currentChannel > maxChannel) {
+            currentChannel = maxChannel;
+        }
+        if (currentChannel < minChannel) {
+            currentChannel = minChannel;
+        }
+        this.currentChannel = currentChannel;
+    }
+
+    public Radio(int id, int maxChannel, int minChannel, int currentChannel, int maxVolume, int minVolume, int currentVolume) {
+        this.id = id;
+        this.maxChannel = maxChannel;
+        this.minChannel = minChannel;
+        this.currentChannel = currentChannel;
+        this.maxVolume = maxVolume;
+        this.minVolume = minVolume;
+        this.currentVolume = currentVolume;
+    }
 
     public void setMaxChannel(int maxChannel) {
         this.maxChannel = maxChannel;
@@ -20,10 +44,14 @@ public class Radio {
         return currentChannel;
     }
 
+    public int getMaxChannel() {
+        return maxChannel;
+    }
+
     public void setChannel(int currentChannel) {
         if (currentChannel > maxChannel) {
             currentChannel = maxChannel;
-            }
+        }
         if (currentChannel < minChannel) {
             currentChannel = minChannel;
         }
@@ -31,7 +59,7 @@ public class Radio {
     }
 
     public int increaseChannel() {
-        if(currentChannel < maxChannel) {
+        if (currentChannel < maxChannel) {
             currentChannel = currentChannel + 1;
         } else {
             currentChannel = minChannel;
