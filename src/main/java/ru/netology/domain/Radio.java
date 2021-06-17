@@ -2,6 +2,7 @@ package ru.netology.domain;
 
 public class Radio {
     private int id;
+    private int channelNumber;
     private int maxChannel = 10;
     private int minChannel = 0;
     private int currentChannel = 5;
@@ -22,9 +23,9 @@ public class Radio {
         this.currentChannel = currentChannel;
     }
 
-    public Radio(int id, int maxChannel, int minChannel, int currentChannel, int maxVolume, int minVolume, int currentVolume) {
+    public Radio(int id, int channelNumber, int minChannel, int currentChannel, int maxVolume, int minVolume, int currentVolume) {
         this.id = id;
-        this.maxChannel = maxChannel;
+        this.maxChannel = minChannel + channelNumber - 1;
         this.minChannel = minChannel;
         this.currentChannel = currentChannel;
         this.maxVolume = maxVolume;
@@ -32,30 +33,12 @@ public class Radio {
         this.currentVolume = currentVolume;
     }
 
-    public void setMaxChannel(int maxChannel) {
-        this.maxChannel = maxChannel;
-    }
-
-    public void setMinChannel(int minChannel) {
-        this.minChannel = minChannel;
-    }
-
-    public int getChannel() {
-        return currentChannel;
-    }
-
     public int getMaxChannel() {
         return maxChannel;
     }
 
-    public void setChannel(int currentChannel) {
-        if (currentChannel > maxChannel) {
-            currentChannel = maxChannel;
-        }
-        if (currentChannel < minChannel) {
-            currentChannel = minChannel;
-        }
-        this.currentChannel = currentChannel;
+    public int getChannel() {
+        return currentChannel;
     }
 
     public int increaseChannel() {
@@ -76,12 +59,13 @@ public class Radio {
         return currentChannel;
     }
 
-    public void setMaxVolume(int maxVolume) {
-        this.maxVolume = maxVolume;
+    public int getChannelNumber() {
+        return channelNumber;
     }
 
-    public void setMinVolume(int minVolume) {
-        this.minVolume = minVolume;
+    public void setChannelNumber(int channelNumber) {
+        this.channelNumber = channelNumber;
+        this.maxChannel = minChannel + channelNumber - 1;
     }
 
     public int getVolume() {
@@ -118,3 +102,10 @@ public class Radio {
         return currentVolume;
     }
 }
+//    public void setMaxVolume(int maxVolume) {
+//        this.maxVolume = maxVolume;
+//    }
+//
+//    public void setMinVolume(int minVolume) {
+//        this.minVolume = minVolume;
+//    }
