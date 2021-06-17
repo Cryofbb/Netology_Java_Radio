@@ -23,6 +23,12 @@ public class Radio {
         this.currentChannel = currentChannel;
     }
 
+    public Radio(int channelNumber, int minChannel) {
+        this.channelNumber = channelNumber;
+        this.minChannel = minChannel;
+        this.maxChannel = minChannel + channelNumber - 1;
+    }
+
     public Radio(int id, int channelNumber, int minChannel, int currentChannel, int maxVolume, int minVolume, int currentVolume) {
         this.id = id;
         this.maxChannel = minChannel + channelNumber - 1;

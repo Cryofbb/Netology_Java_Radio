@@ -20,6 +20,13 @@ public class RadioTest {
     }
 
     @Test
+    public void createNewStationList() {
+        Radio radio = new Radio(10, 21);
+        assertEquals(30, radio.getMaxChannel());
+        assertEquals(10, radio.getChannelNumber());
+    }
+
+    @Test
     public void shouldChangeCurrentChannelMoreMax() {
         Radio radio = new Radio(10);
         assertEquals(10, radio.getChannel());
