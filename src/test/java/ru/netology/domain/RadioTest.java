@@ -16,8 +16,21 @@ public class RadioTest {
     }
 
     @Test
+    void changeChannelOverMaxAndNumber() {
+        Radio radio = new Radio(50);
+        radio.setChannel(49);
+        assertEquals(0, radio.increaseChannel());
+    }
+
+    @Test
+    void changeChannelLessMinAndNumber() {
+        Radio radio = new Radio(50);
+        radio.setChannel(0);
+        assertEquals(49, radio.decreaseChannel());
+    }
+
+    @Test
     void changeChannelAndNotNumber() {
-        Radio radio = new Radio();
         radio.setChannel(5);
         assertEquals(5, radio.getChannel());
         assertEquals(10, radio.getMaxChannel());
