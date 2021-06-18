@@ -8,129 +8,101 @@ public class RadioTest {
     Radio radio = new Radio();
 
     @Test
-    void changeChannel() {
-        radio.setMaxChannel(9);
-        radio.setMinChannel(0);
+    void changeChannelAndNumber() {
+        Radio radio = new Radio(50);
         radio.setChannel(1);
         assertEquals(1, radio.getChannel());
+        assertEquals(49, radio.getMaxChannel());
+    }
+
+    @Test
+    void changeChannelAndNotNumber() {
+        Radio radio = new Radio();
+        radio.setChannel(5);
+        assertEquals(5, radio.getChannel());
+        assertEquals(10, radio.getMaxChannel());
     }
 
     @Test
     void changeChannelMoreMax() {
-        radio.setMaxChannel(9);
-        radio.setMinChannel(0);
         radio.setChannel(11);
-        assertEquals(9, radio.getChannel());
+        assertEquals(10, radio.getChannel());
     }
 
     @Test
     void changeChannelLessMin() {
-        radio.setMaxChannel(9);
-        radio.setMinChannel(1);
-        radio.setChannel(0);
-        assertEquals(1, radio.getChannel());
+        radio.setChannel(-1);
+        assertEquals(0, radio.getChannel());
     }
 
     @Test
     void increaseChannel() {
-        radio.setMaxChannel(9);
-        radio.setMinChannel(0);
         radio.setChannel(8);
         assertEquals(9, radio.increaseChannel());
     }
 
     @Test
     void increaseChannelOverMax() {
-        radio.setMaxChannel(9);
-        radio.setMinChannel(0);
-        radio.setChannel(9);
+        radio.setChannel(10);
         assertEquals(0, radio.increaseChannel());
     }
 
     @Test
     void decreaseChannel() {
-        radio.setMaxChannel(9);
-        radio.setMinChannel(0);
-        radio.setChannel(1);
-        assertEquals(0, radio.decreaseChannel());
-    }
-
-    @Test
-    void decreaseChannelLessMin() {
-        radio.setMaxChannel(9);
-        radio.setMinChannel(0);
-        radio.setChannel(0);
-        assertEquals(9, radio.decreaseChannel());
+        radio.setChannel(5);
+        assertEquals(4, radio.decreaseChannel());
     }
 
     @Test
     void increaseChannelOverLimit() {
-        radio.setMaxChannel(9);
-        radio.setMinChannel(0);
-        radio.setChannel(9);
+        radio.setChannel(10);
         assertEquals(0, radio.increaseChannel());
     }
 
     @Test
     void decreaseChannelOverLimit() {
-        radio.setMaxChannel(9);
-        radio.setMinChannel(0);
         radio.setChannel(0);
-        assertEquals(9, radio.decreaseChannel());
+        assertEquals(10, radio.decreaseChannel());
     }
 
     @Test
     void changeVolume() {
-        radio.setMaxVolume(10);
-        radio.setMinVolume(0);
-        radio.setVolume(1);
-        assertEquals(1, radio.getVolume());
-    }
-
-    @Test
-    void changeVolumeMoreMax() {
-        radio.setMaxVolume(10);
-        radio.setMinVolume(0);
-        radio.setVolume(15);
+        radio.setVolume(10);
         assertEquals(10, radio.getVolume());
     }
 
     @Test
+    void changeVolumeMoreMax() {
+        radio.setVolume(150);
+        assertEquals(100, radio.getVolume());
+    }
+
+    @Test
     void changeVolumeLessMin() {
-        radio.setMaxVolume(10);
-        radio.setMinVolume(5);
-        radio.setVolume(1);
-        assertEquals(5, radio.getVolume());
+        radio.setVolume(-1);
+        assertEquals(0, radio.getVolume());
     }
 
     @Test
     void increaseVolume() {
-        radio.setMaxVolume(10);
-        radio.setMinVolume(0);
-        radio.setVolume(4);
-        assertEquals(5, radio.increaseVolume());
+        radio.setVolume(40);
+        assertEquals(41, radio.increaseVolume());
     }
 
     @Test
     void decreaseVolume() {
-        radio.setMaxVolume(10);
-        radio.setMinVolume(0);
-        radio.setVolume(4);
-        assertEquals(3, radio.decreaseVolume());
+        radio.setVolume(40);
+        assertEquals(39, radio.decreaseVolume());
     }
 
     @Test
     void increaseVolumeOverLimit() {
-        radio.setMaxVolume(10);
-        radio.setMinVolume(0);
-        radio.setVolume(11);
-        assertEquals(10, radio.increaseVolume());
+        radio.setVolume(110);
+        assertEquals(100, radio.increaseVolume());
     }
 
     @Test
     void decreaseVolumeOverLimit() {
-        radio.setMaxVolume(10);
-        radio.setMinVolume(0);
         radio.setVolume(0);
         assertEquals(0, radio.decreaseVolume());
     }
