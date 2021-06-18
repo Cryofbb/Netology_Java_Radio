@@ -11,7 +11,7 @@ public class RadioTest {
     void changeChannelAndNumber() {
         Radio radio = new Radio(50);
         radio.setChannel(1);
-        assertEquals(1, radio.getChannel());
+        assertEquals(1, radio.getCurrentChannel());
         assertEquals(49, radio.getMaxChannel());
     }
 
@@ -32,20 +32,20 @@ public class RadioTest {
     @Test
     void changeChannelAndNotNumber() {
         radio.setChannel(5);
-        assertEquals(5, radio.getChannel());
+        assertEquals(5, radio.getCurrentChannel());
         assertEquals(10, radio.getMaxChannel());
     }
 
     @Test
     void changeChannelMoreMax() {
         radio.setChannel(11);
-        assertEquals(10, radio.getChannel());
+        assertEquals(10, radio.getCurrentChannel());
     }
 
     @Test
     void changeChannelLessMin() {
         radio.setChannel(-1);
-        assertEquals(0, radio.getChannel());
+        assertEquals(0, radio.getCurrentChannel());
     }
 
     @Test
@@ -81,19 +81,19 @@ public class RadioTest {
     @Test
     void changeVolume() {
         radio.setVolume(10);
-        assertEquals(10, radio.getVolume());
+        assertEquals(10, radio.getCurrentVolume());
     }
 
     @Test
     void changeVolumeMoreMax() {
         radio.setVolume(150);
-        assertEquals(100, radio.getVolume());
+        assertEquals(100, radio.getCurrentVolume());
     }
 
     @Test
     void changeVolumeLessMin() {
         radio.setVolume(-1);
-        assertEquals(0, radio.getVolume());
+        assertEquals(0, radio.getCurrentVolume());
     }
 
     @Test
